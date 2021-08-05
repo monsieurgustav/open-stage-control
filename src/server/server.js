@@ -192,10 +192,10 @@ server.on('error', (e)=>{
         console.error(`(ERROR, HTTP) ${e.message}`)
     }
 })
+const host = settings.read('host')
+server.listen(settings.read('port') || 8080, host || '0.0.0.0')
 
-server.listen(settings.read('port') || 8080)
-
-http.get(settings.appAddresses()[0] + '/osc-ping', {
+http.get(settings.appAddresses(host)[0] + '/osc-ping', {
     auth: settings.read('authentication'),
     rejectUnauthorized: false
 },()=>{}).on('error', ()=>{httpCheck(false)})

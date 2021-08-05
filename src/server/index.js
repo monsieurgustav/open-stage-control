@@ -59,7 +59,8 @@ if (!process.versions.electron || process.env.ELECTRON_RUN_AS_NODE) {
 function openClient() {
 
     var app = require('./electron-app')
-    var address = settings.appAddresses()[0]
+    const host = settings.read('host')
+    var address = settings.appAddresses(host)[0]
 
     var launch = ()=>{
         var win = require('./electron-window')({

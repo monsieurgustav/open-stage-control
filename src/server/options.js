@@ -87,6 +87,11 @@ module.exports = {
     },
     'instance-name': {type: 'string', describe: 'used to differentiate multiple instances in a zeroconf network'},
     'use-ssl': {type: 'boolean', describe: 'set to true to use HTTPS protocol instead of HTTP (a self-signed certificate will be created)'},
+    'host': {type: 'string', describe: 'restrict servers to listen only from a specific address',
+        check: (arg)=>{
+            return arg.match(/^\d+.\d+.\d+.\d+$/) ? true : 'host must be an ip address';
+        }
+    },
     'multicast-i': {type: 'string', describe: 'network interface to send and listen packets when using multicast connection',
         check: (arg)=>{
             return arg.match(/^[^:]*$/) ? true : 'Multicast interface must be an ip or a hostname';

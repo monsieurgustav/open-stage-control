@@ -188,7 +188,7 @@ module.exports = {
     cli: cli,
     configPath: baseDir,
     infos: infos,
-    appAddresses: ()=>address(module.exports.read('use-ssl') ? 'https://' : 'http://', settings.options.port || 8080)
+    appAddresses: (filterhost)=>address(module.exports.read('use-ssl') ? 'https://' : 'http://', settings.options.port || 8080, filterhost)
 }
 
 if (process.send) {

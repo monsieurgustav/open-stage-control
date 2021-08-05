@@ -2,9 +2,10 @@ var osc = require('./osc'),
     settings = require('../settings'),
     zeroconf = require('../zeroconf'),
     oscInPort = settings.read('osc-port') || settings.read('port') || 8080
+    oscInAddress = settings.read('host') || '0.0.0.0'
 
 var oscUDPServer = new osc.UDPPort({
-    localAddress: '0.0.0.0',
+    localAddress: oscInAddress,
     localPort: oscInPort,
     metadata: true,
     broadcast: true

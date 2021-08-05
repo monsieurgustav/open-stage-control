@@ -2,6 +2,7 @@ var osc = require('./osc'),
     EventEmitter = require('events').EventEmitter,
     settings = require('../settings'),
     zeroconf = require('../zeroconf'),
+    tcpInAddress = settings.read('host') || '0.0.0.0'
     tcpInPort = settings.read('tcp-port'),
     tcpTargets = settings.read('tcp-targets'),
     net = require('net')
@@ -116,7 +117,7 @@ class OscTCPServer extends EventEmitter {
     open() {
 
         this.server = net.createServer(this.bindSocket.bind(this))
-        this.server.listen({port: tcpInPort})
+        this.server.listen({port: tcpInPort, host: tcpInAddress})
 
         for (var i in tcpTargets) {
 
