@@ -189,6 +189,13 @@ class OscServer {
         })
 
         oscUDPServer.on('message', this.oscInHandlerWrapper.bind(this))
+        const multicast_interface = settings.read('multicast-i');
+        if (multicast_interface) {
+            oscUDPServer.on('open', (socket) => {
+                console.log('(INFO) Use multicast interface:', multicast_interface);
+                socket.setMulticastInterface(multicast_interface);
+            });
+        }
         oscUDPServer.open()
 
         if (settings.read('tcp-port')) {

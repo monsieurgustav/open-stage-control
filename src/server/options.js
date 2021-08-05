@@ -87,6 +87,11 @@ module.exports = {
     },
     'instance-name': {type: 'string', describe: 'used to differentiate multiple instances in a zeroconf network'},
     'use-ssl': {type: 'boolean', describe: 'set to true to use HTTPS protocol instead of HTTP (a self-signed certificate will be created)'},
+    'multicast-i': {type: 'string', describe: 'network interface to send and listen packets when using multicast connection',
+        check: (arg)=>{
+            return arg.match(/^[^:]*$/) ? true : 'Multicast interface must be an ip or a hostname';
+        }
+    },
 
     // cli only
     'disable-gpu': {type: 'boolean', describe: 'disable hardware acceleration', launcher: false},
