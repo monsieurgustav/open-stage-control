@@ -329,9 +329,9 @@
                 right: 0rem;
                 bottom: 0rem;
                 opacity: var(--alpha-fill-on);
-                height: 2rem;
+                height: 100%;
                 background: var(--color-fill);
-                z-index: 101;
+                z-index: -1;
             }
 
 
@@ -378,10 +378,10 @@
                 right: 0rem;
                 bottom: 0rem;
                 opacity: var(--alpha-fill-on);
-                width: 2rem;
+                width: 100%;
                 height: auto;
                 background: var(--color-fill);
-                z-index: 101;
+                z-index: -1;
             }
 
             &:last-child {

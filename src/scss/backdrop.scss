@@ -1,0 +1,57 @@
+:root {
+	--color-background: #191919;
+	--color-accent: #F72D47;
+	--color-ui-background: #3C3C3C;
+	--line-width: 0;
+}
+
+.widget {
+	--alpha-stroke: 0;
+    --alpha-fill-off: 0;
+    --alpha-fill-on: 1;
+	--color-text-on: white;
+	--widget-padding: 0;
+	--line-width: 0;
+}
+
+.button-container {
+	background-color: #3C3C3C;
+	--line-width: 0;
+}
+
+.switch-container {
+	background-color: #3C3C3C;
+	--line-width: 0;
+}
+
+.modal-container > .toggle {
+    /*--alpha-fill-off: 0;*/
+	--alpha-stroke: 1;
+	--line-width: 1rem;
+}
+
+.input-container {
+	--color-text: #9482FF;
+	border-bottom: 1px solid #3C3C3C;
+}
+
+.input-container input {
+	border-bottom: 2rem solid var(--color-accent);
+    color: var(--color-text);
+}
+
+.input-container input:focus::selection {
+    background-color: var(--color-widget);
+    color: black;
+}
+
+.file-container {
+	--color-text: #9482FF;
+	border-bottom: 1px solid #3C3C3C;
+}
+
+.file-container input {
+	border-bottom: 2rem solid var(--color-accent);
+    color: var(--color-text);
+}
+

@@ -150,8 +150,7 @@
 
         @include pseudo-fill($z: -1);
         &:after {
-            --line-width: 1rem;
-            margin: calc(var(--widget-spacing) - 1rem);
+            margin: calc(var(--widget-spacing) - var(--line-width));
         }
 
         &.on {
