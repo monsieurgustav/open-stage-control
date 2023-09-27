@@ -124,7 +124,9 @@ class Switch extends MenuBase {
         DOM.each(this.widget, '.on', (el)=>{el.classList.remove('on')})
 
         if (i !== -1) {
-            DOM.get(this.widget, 'value')[i].classList.add('on')
+            const valueElement = DOM.get(this.widget, 'value')[i];
+            valueElement.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" })
+            valueElement.classList.add('on')
         }
 
         if (options.send) this.sendValue(this.value)
