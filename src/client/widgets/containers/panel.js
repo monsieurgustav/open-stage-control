@@ -31,6 +31,7 @@ class Panel extends Container() {
                 layout: {type: 'string', value: 'default', choices: ['default', 'vertical', 'horizontal', 'grid'], help:'Defines how children are laid out.'},
                 justify: {type: 'string', value: 'start', choices: ['start', 'end', 'center', 'space-around', 'space-between'], help:'If `layout` is `vertical` or `horizontal`, defines how widgets should be justified.'},
                 gridTemplate: {type: 'string|number', value: '', help:'If `layout` is `grid`, can be either a number of columns or a valid value for the css property "grid-template".'},
+                gridFlow: {type: 'string', value: 'row', choices: ['row', 'column', 'row dense', 'column dense'], help:'If `layout` is `grid`, defines the layout of the children.'},
                 contain: {type: 'boolean', value: true, help:'If `layout` is `vertical` or `horizontal`, prevents children from overflowing the panel.'},
                 scroll: {type: 'boolean', value: true, help: 'Set to `false` to disable scrollbars'},
                 innerPadding: {type : 'boolean', value: true, help: 'Set to `false` to make the `padding` property apply only between children and not at the container\'s inner boundaries.'},
@@ -79,6 +80,10 @@ class Panel extends Container() {
 
             var template = this.getProp('gridTemplate') || 2
             this.widget.style.gridTemplate = template === parseInt(template) ? `none / repeat(${template}, 1fr)` : template
+
+            if (this.getProp('gridFlow')) {
+                this.widget.style.gridAutoFlow = this.getProp('gridFlow')
+            }
 
         } else if (layout === 'vertical' || layout === 'horizontal'){
 
