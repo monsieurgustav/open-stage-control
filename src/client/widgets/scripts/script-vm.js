@@ -174,6 +174,29 @@ class ScriptVm extends Vm {
 
         }
 
+        this.sandbox.contentWindow.sendNoCheck = (target, address, ...args)=>{  // ADDED
+
+            if (target && target[0] === '/') {
+                args.unshift(address)
+                address = target
+                target = null
+            }
+
+            var overrides = {
+                address,
+                v: args,
+                preArgs: []
+            }
+
+            if (target) overrides.target = Array.isArray(target) ? target : [target]
+
+            var widget = this.getWidget()
+            if (widget.builtIn) widget = widget.parent
+
+            widget.sendValue(overrides, {force: true})
+
+        }
+
         this.sandbox.contentWindow.get = (id)=>{
 
             this.checkContext('get')
@@ -606,7 +629,8 @@ class ScriptVm extends Vm {
 
         for (var imports of ['set', 'get', 'getProp', 'getIndex', 'updateProp', 'send', 'httpGet', 'stateGet', 'stateSet', 'storage',
             'setInterval', 'clearInterval', 'setTimeout', 'cthislearTimeout', 'setFocus', 'unfocus' , 'setFocusable', 'setScroll', 'getScroll', 'toolbar',
-            'openUrl', 'getVar', 'setVar', 'runAs', 'reload', 'Image', 'updateCanvas', 'getNavigator', 'browseFile']) {
+            'openUrl', 'getVar', 'setVar', 'runAs', 'reload', 'Image', 'updateCanvas', 'getNavigator', 'browseFile',
+            'sendNoCheck']) {
             this.sanitize(this.sandbox.contentWindow[imports])
             this.globals[imports] = true
         }
