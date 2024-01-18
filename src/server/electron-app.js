@@ -13,8 +13,13 @@ if (settings.read('disable-vsync')) {
 }
 
 if (settings.read('disable-gpu')) {
+    app.commandLine.appendSwitch('--disable-gpu')
     app.disableHardwareAcceleration()
     app._noGpu = true
+}
+
+if (settings.read('disable-gpu-sandbox')) {
+    app.commandLine.appendSwitch('--disable-gpu-sandbox')
 }
 
 if (settings.read('force-gpu')) {

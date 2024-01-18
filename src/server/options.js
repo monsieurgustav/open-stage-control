@@ -100,6 +100,7 @@ module.exports = {
 
     // cli only
     'disable-gpu': {type: 'boolean', describe: 'disable hardware acceleration', launcher: false},
+    'disable-gpu-sandbox': {type: 'boolean', describe: 'disable hardware acceleration sandbox', launcher: false},
     'inspect': {type: 'boolean', describe: 'enable node/electron inspector', launcher: false},
     'cache-dir': {type: 'string', describe: 'override default cache directory', launcher: false},
     'config-file': {type: 'string', describe: 'override default config file (defaults to cache-dir/config.json)', launcher: false},
